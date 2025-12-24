@@ -1,0 +1,55 @@
+
+.header {
+    background-color: #2f8206b8;
+    padding: 2%;
+}
+
+.redirect-item {
+    color: white;
+    text-decoration: none;
+}
+
+.header-logo {
+    height: 50px;
+}
+
+.material-symbols-outlined {
+    color: white;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 800,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.content {
+    height: 80vh;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.uploads {
+    margin: 7%;
+}
+.upload-heading{
+    font-size: 40px;
+    margin-bottom: 3%;
+}
+
+.input {
+    margin-bottom: 3%;
+}
+
+.button {
+    margin-bottom: 5%;
+}
