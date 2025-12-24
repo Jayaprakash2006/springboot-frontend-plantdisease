@@ -84,19 +84,40 @@
             background-color: #65c466;
         }
 
+        /* Result Box Style */
         .prediction {
             margin-top: 2rem;
             background-color: #f1f8e9;
             padding: 1.5rem;
             border-radius: 10px;
+            border-left: 5px solid #2f8206;
         }
 
-        .prediction p {
-            font-size: 1.1rem;
+        /* Error Box Style */
+        .error-box {
+            margin-top: 2rem;
+            background-color: #fff5f5;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid #feb2b2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .prediction strong {
-            color: #2f8206;
+        .error-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-left: 15px;
+        }
+
+        /* Loading Spinner */
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -116,21 +137,41 @@
 <div class="content">
     <div class="uploads">
         <h1 class="upload-heading">Upload to Detect Disease</h1>
-        <form th:action="@{/predict}" method="post" enctype="multipart/form-data">
-            <input class="form-control mb-3" type="file" name="file" required />
-            <button class="btn btn-success">Upload</button>
+        
+        <form th:action="@{/predict}" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <input class="form-control mb-3" type="file" name="file" id="fileInput" required />
+            <button type="submit" class="btn btn-success">Analyze Leaf</button>
         </form>
 
-        <div class="prediction" th:if="${result}">
-            <h4>Prediction</h4>
-            <p><strong>Status:</strong> <span th:text="${result.status}"></span></p>
-            <p><strong>Disease:</strong> <span th:text="${result.disease}"></span></p>
-            <p><strong>Confidence:</strong> <span th:text="${result.confidence}"></span></p>
+        <div id="loading">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="mt-2 text-muted small">Waking up AI... This may take a minute on the first try.</p>
         </div>
 
-        <p class="text-danger mt-3" th:if="${error}" th:text="${error}"></p>
+        <div class="prediction" th:if="${result}">
+            <h4>Prediction Results</h4>
+            <p><strong>Status:</strong> <span th:text="${result.status}"></span></p>
+            <p><strong>Disease:</strong> <span th:text="${result.disease}"></span></p>
+            <p><strong>Confidence:</strong> <span th:text="${#numbers.formatPercent(result.confidence, 1, 2)}"></span></p>
+        </div>
+
+        <div class="error-box" th:if="${error}">
+            <div>
+                <h5 class="text-danger">Detection Failed</h5>
+                <p class="text-muted small mb-0" th:text="${error}"></p>
+                <a href="/upload" class="btn btn-link btn-sm p-0 text-danger">Try another photo</a>
+            </div>
+            <img src="https://res.cloudinary.com/drpsxdn8u/image/upload/v1766565011/439605032_1203590010628368_6519436146906537304_n_kocepm.jpg" 
+                 alt="Error" class="error-image">
+        </div>
     </div>
 </div>
+
+<script>
+    function showLoading() {
+        document.getElementById('loading').style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
