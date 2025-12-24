@@ -153,6 +153,12 @@
             <p><strong>Status:</strong> <span th:text="${result.status}"></span></p>
             <p><strong>Disease:</strong> <span th:text="${result.disease}"></span></p>
             <p><strong>Confidence:</strong> <span th:text="${#numbers.formatPercent(result.confidence, 1, 2)}"></span></p>
+            
+            <div th:if="${result.aiAdvice}" class="mt-4 p-3 border-top border-success" style="background-color: #fff; border-radius: 8px;">
+                <h5 class="text-success"><span class="material-symbols-outlined" style="font-size: 20px; color: #2f8206; vertical-align: middle;">psychology</span> AI Pathologist Advice</h5>
+                <p class="mb-0" style="font-style: italic; color: #444;" th:text="${result.aiAdvice}"></p>
+            </div>
+
         </div>
 
         <div class="error-box" th:if="${error}">
