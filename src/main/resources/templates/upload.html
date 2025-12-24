@@ -156,7 +156,14 @@
             
             <div th:if="${result.aiAdvice}" class="mt-4 p-3 border-top border-success" style="background-color: #fff; border-radius: 8px;">
                 <h5 class="text-success"><span class="material-symbols-outlined" style="font-size: 20px; color: #2f8206; vertical-align: middle;">psychology</span> AI Pathologist Advice</h5>
-                <p class="mb-0" style="font-style: italic; color: #444;" th:text="${result.aiAdvice}"></p>
+                <pre class="mb-0"
+                    style="font-family: Ubuntu, sans-serif;
+                            font-size: 0.95rem;
+                            white-space: pre-wrap;
+                            color: #333;"
+                    th:text="${result.aiAdvice}">
+                </pre>
+
             </div>
 
         </div>
