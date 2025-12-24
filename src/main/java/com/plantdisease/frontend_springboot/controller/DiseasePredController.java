@@ -42,6 +42,7 @@ public class DiseasePredController {
             return "upload";
         }
         catch(Exception e) {
+            e.printStackTrace();
             model.addAttribute("error", "Could not connect to the analysis server.");
             return "upload";
         }
